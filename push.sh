@@ -84,6 +84,24 @@ function pushCDN()
     else
         echo -e "\033[31m push主分支失败 \033[0m";
     fi
+
+    #打publish的tag
+    git tag publish/${version};
+    if [ $? -eq 0 ]
+    then
+        echo "\033[32m tag成功 \033[0m"
+    else
+        echo -e "\033[31m 当前tag已经存在 \033[0m"
+    fi
+
+    #发布正式版本
+    git push origin publish/${version};
+    if [ $? -eq 0 ]
+    then
+        echo "发布线上版本成功";
+    else
+        echo -e "\033[31m 发布cdn线上版本失败 \033[0m"
+    fi
 }
 
 pushCDN
