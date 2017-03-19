@@ -46,7 +46,8 @@ function pushCDN()
     else
         echo -e "\033[31m 分支daily/${version}push==>远程仓库失败 \033[0m";
         exit;
-    fi 
+    fi
+    git checkout
 }
 
 pushCDN
