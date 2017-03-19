@@ -38,7 +38,7 @@ function pushCDN()
         echo -e "\033[33m 正在上传分支daily/${version}==>远程仓库 \033[0m";
     fi
 
-    #push 分支去远程仓库;
+    #push分支去远程仓库;
     git push origin daily/${version};
     if [ $? -eq 0 ]
     then
@@ -47,7 +47,33 @@ function pushCDN()
         echo -e "\033[31m 分支daily/${version}push==>远程仓库失败 \033[0m";
         exit;
     fi
-    git checkout
+
+    #切换到主分支
+    git checkout master;
+    if [ $? -eq 0 ]
+    then
+        echo -e "\033[32m 切换到主分支 \033[0m";
+    else
+         echo -e "\033[31m 切换到主分支失败 \033[0m";
+         exit;
+    fi
+
+    #从远程仓库拉取
+    git pull;
+    if [ $? -eq 0 ]
+    then
+        git merge daily/${version};
+        if [ $? -eq 0 ]
+        then
+            echo -e "\033[32m 合并分支成功 \033[0m"
+        else
+            echo -e "\033[31m 合并分支daily/${version}失败 \033[0m";
+            exit;
+        fi
+    else
+        echo -e "\033[31m pull线上版本失败 \033[0m";
+        exit;
+    fi
 }
 
 pushCDN
