@@ -135,7 +135,7 @@ function pushCDN()
     files="$dir/build/*";
     for file in ${files}
     do
-    echo "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
+    echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
     done
 }
 
