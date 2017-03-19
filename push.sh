@@ -98,10 +98,19 @@ function pushCDN()
     git push origin publish/${version};
     if [ $? -eq 0 ]
     then
-        echo "发布线上版本成功";
+        echo "发布线上版本成功,生成CDN网址是: ";
     else
-        echo -e "\033[31m 发布cdn线上版本失败 \033[0m"
+        echo -e "\033[31m 发布CDN线上版本失败 \033[0m"
     fi
+    #生成上传文件的地址
+    dir=`pwd`;
+    remote_name=${dir##*/};
+    files="$dir/build/*";
+    for file in ${files}
+    do
+    echo "//g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/}";
+    done
+    
 }
 
 pushCDN
