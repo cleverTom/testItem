@@ -62,10 +62,11 @@ function pushCDN()
     git pull;
     if [ $? -eq 0 ]
     then
+         echo -e "\033[32m 远程仓库pull成功 \033[0m";
         git merge daily/${version};
         if [ $? -eq 0 ]
         then
-            echo -e "\033[32m 合并分支成功 \033[0m"
+            echo -e "\033[32m 合并分支成功 \033[0m";
         else
             echo -e "\033[31m 合并分支daily/${version}失败 \033[0m";
             exit;
@@ -74,6 +75,7 @@ function pushCDN()
         echo -e "\033[31m pull线上版本失败 \033[0m";
         exit;
     fi
+    echo "快要publish啦";
 }
 
 pushCDN
