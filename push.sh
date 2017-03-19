@@ -34,17 +34,17 @@ function pushCDN()
         echo -e "\033[31m 推送到本地版本库失败 \033[0m";
         exit;
     else
-        echo -e "\033[32m 成功上传到本地仓库 \033[0m";
-        echo -e "\033[33m 正在上传daily/${version}==>到远程仓库 \033[0m";
+        echo -e "\033[32m 成功上传==>本地仓库 \033[0m";
+        echo -e "\033[33m 正在上传分支daily/${version}==>远程仓库 \033[0m";
     fi
 
     #push 分支去远程仓库;
     git push origin daily/${version};
     if [ $? -eq 0 ]
     then
-        echo -e "\033[32m 分支daily/${version}==>push到远程仓库成功 \033[0m";
+        echo -e "\033[32m 分支daily/${version}push==>远程仓库成功 \033[0m";
     else
-        echo -e "\033[31m 分支daily/${version}push到远程仓库失败 \033[0m";
+        echo -e "\033[31m 分支daily/${version}push==>远程仓库失败 \033[0m";
         exit;
     fi 
 }
