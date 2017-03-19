@@ -41,12 +41,12 @@ function pushCDN()
     git push origin daily/${version};
     if [ $? -eq 0 ]
     then
-        echo -e "\033[32m 分支daily/${version}push到远程仓库成功 \033[0m";
+        echo -e "\033[33m 正在上传daily/${version} \033[0m";
     else
         echo -e "\033[31m 分支daily/${version}push到远程仓库失败 \033[0m";
         exit;
     fi
-    echo "我执行了";
+    echo "\033[31m 分支daily/${version}push到远程仓库成功 \033[0m";
 }
 
 pushCDN
