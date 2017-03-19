@@ -75,7 +75,15 @@ function pushCDN()
         echo -e "\033[31m pull线上版本失败 \033[0m";
         exit;
     fi
-    echo "快要publish啦";
+    
+    #推送主分支
+    git push origin master;
+    if [ $? -eq 0 ]
+    then
+        echo -e "\033[32m push主分支成功 \033[0m";
+    else
+        echo -e "\033[31m push主分支失败 \033[0m";
+    fi
 }
 
 pushCDN
