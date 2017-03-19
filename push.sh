@@ -2,7 +2,6 @@
 
 function pushCDN()
 {
-    RED_COLOR='\E[1;31m' #红色
     git tag;
     while :
     do
@@ -35,9 +34,15 @@ function pushCDN()
     else
         echo -e "\033[32m 成功上传到本地版本库 \033[0m";
     fi
-    # echo -e "\033[34m 成功创建本地版本库版本 \033[0m";
+    #push 分支去远程仓库;
+    git push origin daily/${version};
+    if [ $? -eq 0 ]
+    then
+        echo -e "\033[32m 分支daily/${version}push到远程仓库成功 \033[0m";
+    else
+        echo -e "\033[31m 分支daily/${version}push到远程仓库失败 \033[0m";
+    fi
     # git push origin daily/${version};
-
 }
 
 pushCDN
