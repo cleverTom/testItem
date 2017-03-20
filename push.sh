@@ -117,13 +117,14 @@ function pushCDN()
         echo -e "\033[31m 发布CDN线上版本失败 \033[0m";
         exit;
     fi
+    
     #生成上传文件的地址
     dir=`pwd`;
     remote_name=${dir##*/};
     files="$dir/build";
     for file in ${files}/*
     do
-    echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file} \033[0m";
+    echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
     done
 }
 
