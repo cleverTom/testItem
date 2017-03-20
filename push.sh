@@ -118,10 +118,10 @@ function pushCDN()
     for file in ${files}
     do
     echo $file
-    echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
+    echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file} \033[0m";
     done
 }
-pushCDN
+
 if [ $? -eq 0 ]
 then
     echo "注入代码成功,如有问题,请联系@孟浩然";
