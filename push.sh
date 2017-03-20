@@ -96,7 +96,7 @@ function pushCDN()
     git tag publish/${version};
     if [ $? -eq 0 ]
     then
-        echo "\033[32m tag成功 \033[0m"
+        echo -e "\033[32m 发布tag成功,当前版本publish/${version} \033[0m"
     else
         echo -e "\033[31m 当前tag已经存在 \033[0m";
         exit;
