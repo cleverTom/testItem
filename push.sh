@@ -2,7 +2,7 @@
 
 function pushCDN()
 {
-    echo "当前已经发布的tag版本: "
+    echo "当前已经发布的tag版本: ";
     git tag;
     while :
     do
@@ -23,16 +23,22 @@ function pushCDN()
     else
         echo -e "\033[31m 输入不能为空,请重新输入version \033[0m";
     fi
-    done;
+    done
 
-     #推送到本地版本库
-    printf "请输入本次上传版本的描述(不能为空): ";
-    read description;
-    if [ ${#description} == 0 ] 
-    then
-        echo -e "\033[31m 版本描述不能为空 \033[0m";
-        exit;
-    fi
+    #判断用户有没有输入版本描述
+    while :
+    do
+        printf "请输入本次上传版本的描述(不能为空): ";
+        read description;
+        if [ ${#description} == 0 ] 
+        then
+            echo -e "\033[31m 版本描述不能为空 \033[0m";
+        else
+            break;
+        fi
+    done
+
+    #提交本地版本库;
     git add .;
     git commit -m "${description}";
     if [ $? -ne 0 ]
@@ -117,7 +123,6 @@ function pushCDN()
     files="$dir/build";
     for file in ${files}/*
     do
-    echo $file
     echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file} \033[0m";
     done
 }
