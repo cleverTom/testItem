@@ -1,17 +1,6 @@
-#!/bin/bash
-root="$HOME";
-if [ -d "$root/.mhrPushCDN" ]
-then
-    echo -e "\033[31m 目标文件夹存在,生成失败请联系@孟浩然 \033[0m";
-    exit;
-else
-    cd ~;
-    mkdir .mhrPushCDN;
-    cd .mhrPushCDN;
-fi
-echo 'function pushCDN()
+#!/bin/sh
+function pushCDN()
 {
-    #!/bin/bash
     echo "当前已经发布的tag版本: ";
     git tag;
     while :
@@ -136,17 +125,4 @@ echo 'function pushCDN()
     do
     echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
     done
-}' >> push.sh;
-
-echo '
-#pushcdn的脚本
-source $HOME/.mhrPushCDN/push.sh' >> ~/.zshrc;
-
-#上传的问题
-if [ $? -eq 0 ]
-then
-    echo "注入代码成功,如有问题,请联系@孟浩然";
-else
-    echo -e "\033[31m 代码注入失败,请联系@孟浩然 \033[0m";
-    exit;
-fi
+}
