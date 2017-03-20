@@ -114,7 +114,7 @@ function pushCDN()
     #生成上传文件的地址
     dir=`pwd`;
     remote_name=${dir##*/};
-    files="$dir/build/*";
+    files=`$dir/build/*`;
     for file in ${files}
     do
     echo $file
