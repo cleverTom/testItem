@@ -120,11 +120,11 @@ function pushCDN()
     echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
     done
 }
-
+pushCDN
 echo '
 function pushCDN()
 {
-    echo "当前存在的tag: "
+    echo "当前已经发布的tag版本: "
     git tag;
     while :
     do
@@ -153,8 +153,6 @@ function pushCDN()
     if [ ${#description} == 0 ] 
     then
         echo -e "\033[31m 版本描述不能为空 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     fi
     git add .;
@@ -162,8 +160,6 @@ function pushCDN()
     if [ $? -ne 0 ]
     then
         echo -e "\033[31m 推送到本地版本库失败 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     else
         echo -e "\033[32m 成功上传==>本地仓库 \033[0m";
@@ -177,8 +173,6 @@ function pushCDN()
         echo -e "\033[32m 分支daily/${version}push==>远程仓库成功 \033[0m";
     else
         echo -e "\033[31m 分支daily/${version}push==>远程仓库失败 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     fi
 
@@ -189,8 +183,6 @@ function pushCDN()
         echo -e "\033[32m 切换到主分支 \033[0m";
     else
          echo -e "\033[31m 切换到主分支失败 \033[0m";
-         git checkout master;
-         git branch -d daily/${version};
          exit;
     fi
 
@@ -205,14 +197,10 @@ function pushCDN()
             echo -e "\033[32m 合并分支成功 \033[0m";
         else
             echo -e "\033[31m 合并分支daily/${version}失败 \033[0m";
-            git checkout master;
-            git branch -d daily/${version};
             exit;
         fi
     else
         echo -e "\033[31m pull线上版本失败 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     fi
     
@@ -223,8 +211,6 @@ function pushCDN()
         echo -e "\033[32m push主分支成功 \033[0m";
     else
         echo -e "\033[31m push主分支失败 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     fi
 
@@ -235,8 +221,6 @@ function pushCDN()
         echo "\033[32m tag成功 \033[0m"
     else
         echo -e "\033[31m 当前tag已经存在 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     fi
 
@@ -247,11 +231,8 @@ function pushCDN()
         echo "发布线上版本成功,生成CDN网址是: ";
     else
         echo -e "\033[31m 发布CDN线上版本失败 \033[0m";
-        git checkout master;
-        git branch -d daily/${version};
         exit;
     fi
-
     #生成上传文件的地址
     dir=`pwd`;
     remote_name=${dir##*/};
