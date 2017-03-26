@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 function pushCDN()
 {
     echo "当前已经发布的tag版本: ";
