@@ -7,5 +7,6 @@ for file in ${files}
 do
     echo "//g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/}";
 done
+echo "hello,world";
 
 
