@@ -126,3 +126,5 @@ function pushCDN()
     echo -e "\033[36m //g.alicdn.com/tvtaobao-assets/${remote_name}/${version}/${file##*/} \033[0m";
     done
 }
+
+pushCDN
